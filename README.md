@@ -21,8 +21,8 @@ Supported Browsers
 | Firefox < 20   | data: URI     | No           | n/a           | [Blob.js](https://github.com/eligrey/Blob.js) |
 | Chrome         | Blob          | Yes          | 345 MiB       | None         |
 | Chrome for Android | Blob      | Yes          | ?             | None         |
-| IE 9-          | text          | Yes          | n/a           | None         |
 | IE 10+         | Blob          | Yes          | 600 MiB       | None         |
+| IE < 10        | text          | Yes          | n/a           | None         |
 | Opera 15+      | Blob          | Yes          | 345 MiB       | None         |
 | Opera < 15     | data: URI     | No           | n/a           | [Blob.js](https://github.com/eligrey/Blob.js) |
 | Safari 6.1+*   | Blob          | No           | ?             | None         |
@@ -38,11 +38,9 @@ try {
 
 ### IE < 10
 
-Below example will show you how to save HTML documents or text file in IE < 10 without Flash-based
-polyfills. Actually, this function also works for HTML5 supported browsers.
-```js
-boolean saveTextAs(in textContent, in fileName, in charset)
-```
+saveTextAs() will help you how to save HTML documents or text file in IE < 10 without Flash-based
+polyfills. However, only text based files could be saved in IE < 10, that means canvas will not be
+supported.
 
 ### Safari 6.1+
 
@@ -55,6 +53,8 @@ Syntax
 
 ```js
 FileSaver saveAs(in Blob data, in DOMString filename)
+
+boolean saveTextAs(in textContent, in fileName, in charset)
 ```
 
 Examples
@@ -64,9 +64,10 @@ Examples
 
 ```js
 saveTextAs("Hi,This,is,a,CSV,File", "test.csv");
+saveTextAs("<div>Hello, world!</div>", "test.html");
 ```
 
-Please note for IE 9-, available file extensions are htm/html/txt, any other text based file will be appended with .txt file extension automatically.
+Please note for IE < 10, available file extensions are htm/html/txt, any other text based file will be appended with .txt file extension automatically. For example, "test.csv" will be saved as "test_csv.txt".
 
 ### Saving text(HTML 5)
 
@@ -78,7 +79,7 @@ saveAs(blob, "hello world.txt");
 The standard W3C File API [`Blob`][3] interface is not available in all browsers.
 [Blob.js][4] is a cross-browser `Blob` implementation that solves this.
 
-### Saving a canvas
+### Saving a canvas(HTML 5)
 
 ```js
 var canvas = document.getElementById("my-canvas"), ctx = canvas.getContext("2d");
