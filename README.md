@@ -22,7 +22,7 @@ Supported Browsers
 | Chrome         | Blob          | Yes          | 345 MiB       | None         |
 | Chrome for Android | Blob      | Yes          | ?             | None         |
 | IE 10+         | Blob          | Yes          | 600 MiB       | None         |
-| IE < 10        | text          | Yes          | n/a           | None         |
+| IE < 10        | text/html     | Yes          | n/a           | None         |
 | Opera 15+      | Blob          | Yes          | 345 MiB       | None         |
 | Opera < 15     | data: URI     | No           | n/a           | [Blob.js](https://github.com/eligrey/Blob.js) |
 | Safari 6.1+*   | Blob          | No           | ?             | None         |
@@ -38,7 +38,7 @@ try {
 
 ### IE < 10
 
-saveTextAs() will help you how to save HTML documents or text file in IE < 10 without Flash-based
+saveTextAs() will help you to save HTML documents or text file in IE < 10 without Flash-based
 polyfills. However, only text based files could be saved in IE < 10, that means canvas will not be
 supported.
 
@@ -51,10 +51,13 @@ press <kbd>⌘</kbd>+<kbd>S</kbd> to save the file after it is opened. Further i
 Syntax
 ------
 
+Save Text File:
+```js
+boolean saveTextAs(in textContent, in fileName, in charset)
+```
+Save File(HTML 5):
 ```js
 FileSaver saveAs(in Blob data, in DOMString filename)
-
-boolean saveTextAs(in textContent, in fileName, in charset)
 ```
 
 Examples
@@ -67,7 +70,7 @@ saveTextAs("Hi,This,is,a,CSV,File", "test.csv");
 saveTextAs("<div>Hello, world!</div>", "test.html");
 ```
 
-Please note for IE < 10, available file extensions are htm/html/txt, any other text based file will be appended with .txt file extension automatically. For example, "test.csv" will be saved as "test_csv.txt".
+For IE < 10, available file extensions are ".htm/.html/.txt", any other text based file will be appended with ".txt" file extension automatically. For example, "test.csv" will be saved as "test_csv.txt".
 
 ### Saving text(HTML 5)
 
