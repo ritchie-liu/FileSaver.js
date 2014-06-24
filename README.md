@@ -21,6 +21,7 @@ Supported Browsers
 | Firefox < 20   | data: URI     | No           | n/a           | [Blob.js](https://github.com/eligrey/Blob.js) |
 | Chrome         | Blob          | Yes          | 345 MiB       | None         |
 | Chrome for Android | Blob      | Yes          | ?             | None         |
+| IE 9-          | text          | Yes          | n/a           | None         |
 | IE 10+         | Blob          | Yes          | 600 MiB       | None         |
 | Opera 15+      | Blob          | Yes          | 345 MiB       | None         |
 | Opera < 15     | data: URI     | No           | n/a           | [Blob.js](https://github.com/eligrey/Blob.js) |
@@ -37,8 +38,11 @@ try {
 
 ### IE < 10
 
-To save HTML documents or text file in IE < 10 without Flash-based
-polyfills. Use saveTextAs(textContent, fileName, charset).
+Below example will show you how to save HTML documents or text file in IE < 10 without Flash-based
+polyfills. Actually, this function also works for HTML5 supported browsers.
+```js
+boolean saveTextAs(in textContent, in fileName, in charset)
+```
 
 ### Safari 6.1+
 
