@@ -37,9 +37,8 @@ try {
 
 ### IE < 10
 
-It is possible to save HTML documents (and only HTML documents) in IE < 10 without Flash-based
-polyfills. See [sudodoki's comment](https://github.com/eligrey/FileSaver.js/issues/56#issuecomment-30917476)
-for more information on how to accomplish this.
+To save HTML documents or text file in IE < 10 without Flash-based
+polyfills. Use saveTextAs(textContent, fileName, charset).
 
 ### Safari 6.1+
 
@@ -57,7 +56,7 @@ FileSaver saveAs(in Blob data, in DOMString filename)
 Examples
 --------
 
-### Saving text
+### Saving text(HTML 5)
 
 ```js
 var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
@@ -66,6 +65,14 @@ saveAs(blob, "hello world.txt");
 
 The standard W3C File API [`Blob`][3] interface is not available in all browsers.
 [Blob.js][4] is a cross-browser `Blob` implementation that solves this.
+
+### Saving text(All Browsers)
+
+```js
+saveTextAs("Hi,This,is,a,CSV,File", "test.csv");
+```
+
+Please note available file extensions for IE 9- are htm/html/txt, any other text based file will append txt file extension automatically.
 
 ### Saving a canvas
 
