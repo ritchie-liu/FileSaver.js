@@ -60,6 +60,14 @@ FileSaver saveAs(in Blob data, in DOMString filename)
 Examples
 --------
 
+### Saving text(All Browsers)
+
+```js
+saveTextAs("Hi,This,is,a,CSV,File", "test.csv");
+```
+
+Please note for IE 9-, available file extensions are htm/html/txt, any other text based file will be appended with .txt file extension automatically.
+
 ### Saving text(HTML 5)
 
 ```js
@@ -69,14 +77,6 @@ saveAs(blob, "hello world.txt");
 
 The standard W3C File API [`Blob`][3] interface is not available in all browsers.
 [Blob.js][4] is a cross-browser `Blob` implementation that solves this.
-
-### Saving text(All Browsers)
-
-```js
-saveTextAs("Hi,This,is,a,CSV,File", "test.csv");
-```
-
-Please note available file extensions for IE 9- are htm/html/txt, any other text based file will append txt file extension automatically.
 
 ### Saving a canvas
 
