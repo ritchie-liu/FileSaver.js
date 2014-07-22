@@ -277,7 +277,7 @@ var saveTextAs = saveTextAs
         }
 
         var doc = saveTxtWindow.document;
-        doc.open('text/plain', 'replace');
+        doc.open('text/html', 'replace');
         doc.charset = charset;
         if (fileName.endsWithAny('.htm', '.html')) {
             doc.close();
