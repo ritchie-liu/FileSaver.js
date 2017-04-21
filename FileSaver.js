@@ -1,4 +1,10 @@
 /* FileSaver.js
+ *  Modify saveTextAs() method:
+ *    change MIME type from 'text/plain' to 'text/xml' when creating Blob object with filename ends with .xml
+ *    keep suffix as .xml in IE9 when filename ends with .xml
+ *  2017-03-22
+ *  Modify by Ritchie Liu
+ *
  *  A saveAs() & saveTextAs() FileSaver implementation.
  *  2014-06-24
  *
@@ -256,7 +262,8 @@ var saveTextAs = saveTextAs
     charset = charset || 'utf-8';
     textContent = (textContent || '').replace(/\r?\n/g, "\r\n");
     if (saveAs && Blob) {
-        var blob = new Blob([textContent], { type: "text/plain;charset=" + charset });
+        var mime = fileName.endsWithAny('.xml') ? "text/xml" : "text/plain";
+        var blob = new Blob([textContent], { type: mime + ";charset=" + charset });
         saveAs(blob, fileName);
         return true;
     } else {//IE9-
@@ -283,7 +290,7 @@ var saveTextAs = saveTextAs
             doc.close();
             doc.body.innerHTML = '\r\n' + textContent + '\r\n';
         } else {
-            if (!fileName.endsWithAny('.txt')) fileName += '.txt';
+            if (!fileName.endsWithAny('.txt', '.xml')) fileName += '.txt';
             doc.write(textContent);
             doc.close();
         }
